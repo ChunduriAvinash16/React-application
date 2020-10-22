@@ -20,7 +20,7 @@ export default App;*/
 function App() {
     return (
         <div>
-            <div className="Hello">
+            <div className="bg-gray-500 text-white p-5 border ">
                 <h2 >Hello react</h2>
             </div>
         </div>
