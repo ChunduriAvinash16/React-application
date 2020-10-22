@@ -1,1 +1,3 @@
-Node.appendchild():
+appendChild():Child should be node 
+react->just for javascript
+reactDom->To manipulate DOM we need reactDom
