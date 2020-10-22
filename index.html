@@ -16,11 +16,20 @@
 </body>
 <script type="text/babel">
    // console.log(React.version);
+        let Name="Avinash";
+        function Inner(){
+            return(
+            <div>
+                <h1>Lol.....</h1>
+                <h2>Hello</h2>
+            </div>
+            )
+        }
+        console.log(<Inner/>)
     let el=(
         <div>
-            <p>Lol.....</p>
-            <h1>Hello</h1>
-            <h3>Good morning , My name is Aviansh .How can i help you</h3>
+            <Inner></Inner>
+            <h3>Good morning ,<br/> My name is {Name} </h3>
         </div>
     );
     console.log(el);

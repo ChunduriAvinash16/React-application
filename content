@@ -11,6 +11,9 @@ ReactDom & React:
             1->new element
             2->target element
     props : properties
+            1->Movement of data from one functional component to 
+                another function component can be easily done by props.
+        
 
 JSX:
     HTML inside javascript
@@ -18,3 +21,7 @@ JSX:
     babel:
         we can use html elements inside javascript
         it is used to convert html elements provided in script to React elements
+    functional Components:
+        funnction Hello(){return()}
+        ()=>{} //Arrow frunction
+        let Hello = function(){return()}
