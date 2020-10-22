@@ -1,3 +1,12 @@
-appendChild():Child should be node 
-react->just for javascript
-reactDom->To manipulate DOM we need reactDom
+Javascript:
+    1->getElementbyID("Id");
+    2->createElement("h1");
+    3->innerText("providin inner text");
+    4->appendChild():Child should be node 
+ReactDom & React:
+    React.createElement(type,props,value)
+    React->just for javascript
+    ReactDom->To manipulate DOM we need reactDom
+        ReactDom,render(1,2) need 2 things  
+            1->new element
+            2->target element

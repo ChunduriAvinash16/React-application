@@ -13,13 +13,7 @@
     </div>
 </body>
 <script>
-    let root=document.getElementById('root');
-    let el=document.createElement("h1"); //DOM Node
-    el.innerText="React by Avinash"; 
-    el.className+="red";
-    console.log(el);
-    root.appendChild(el); //DOM Node
-   // console.log(el);
-    //console.log(root);
+    let el=React.createElement("h1",null,"React"); //ReactDOM Node
+    ReactDOM.render(el,document.getElementById('root'));
 </script>
 </html>
