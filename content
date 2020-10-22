@@ -15,3 +15,6 @@ ReactDom & React:
 JSX:
     HTML inside javascript
     JSX is advance feature of javascript
+    babel:
+        we can use html elements inside javascript
+        it is used to convert html elements provided in script to React elements

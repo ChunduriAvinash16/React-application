@@ -6,17 +6,23 @@
     <title>React</title>
     <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
 </head>
 <body>
     <div id="root">
         
     </div>
 </body>
-<script>
+<script type="text/babel">
    // console.log(React.version);
-    let innerSpan=React.createElement("span",null,"React by Avinash")
-    let inner=React.createElement("div",null,innerSpan)
-    let el=React.createElement("h1",null,inner); //ReactDOM Node
+    let el=(
+        <div>
+            <p>Lol.....</p>
+            <h1>Hello</h1>
+            <h3>Good morning , My name is Aviansh .How can i help you</h3>
+        </div>
+    );
     console.log(el);
     ReactDOM.render(el,document.getElementById('root'));
 </script>
