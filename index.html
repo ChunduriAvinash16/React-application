@@ -13,7 +13,11 @@
     </div>
 </body>
 <script>
-    let el=React.createElement("h1",null,"React"); //ReactDOM Node
+   // console.log(React.version);
+    let innerSpan=React.createElement("span",null,"React by Avinash")
+    let inner=React.createElement("div",null,innerSpan)
+    let el=React.createElement("h1",null,inner); //ReactDOM Node
+    console.log(el);
     ReactDOM.render(el,document.getElementById('root'));
 </script>
 </html>

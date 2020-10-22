@@ -10,3 +10,8 @@ ReactDom & React:
         ReactDom,render(1,2) need 2 things  
             1->new element
             2->target element
+    props : properties
+
+JSX:
+    HTML inside javascript
+    JSX is advance feature of javascript
