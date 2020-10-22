@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+</head>
+<body>
+    <div id="root">
+        
+    </div>
+</body>
+<script>
+    let root=document.getElementById('root');
+    let el=document.createElement("h1");
+    el.innerText="React by Avinash";
+    el.className+="red";
+    console.log(el);
+    root.appendChild(el); //DOM Node
+   // console.log(el);
+    //console.log(root);
+</script>
+</html>
