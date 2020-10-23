@@ -25,3 +25,15 @@ JSX:
         funnction Hello(){return()}
         ()=>{} //Arrow frunction
         let Hello = function(){return()}
+
+
+Virtual DOM:
+    It will create by react
+    whenever changes in react it actually happens in virtual-dom . 
+    if virtual-dom not same as Real-dom    
+        then the changes made to the Real-DOM in one GO
+    Updating Virtual-DOM is super fast . So,this is the reson react uses virtual-DOM.
+
+while using arrow function no need to bind
+But while defining normal function we have to bid that function.
+
