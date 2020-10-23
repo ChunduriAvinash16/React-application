@@ -1,18 +1,28 @@
 import React,{Component} from 'react';
 import "./assets/css/style.css";
+import Images from "./components/Images";
 class App extends Component{
     constructor(props){
+        console.log("App constructor");
         super(props); //default props
         this.state={title:"Hello React 2",isShowing:false};
 
     }
     handleClick=()=>{
+        console.log("inside handle Cliclk");
         this.setState({
             isShowing:!this.state.isShowing
         });
     }
+    componentDidMount(){
+        console.log("Mount");
+        this.setState({ title:"Hello Avinash"})
+    }
+
 
     render(){
+        console.log("App Render");
+        console.log(this.state.title);
         return(
             <section className="flex justify-center">
                 <div className="w-1/2">
@@ -23,7 +33,7 @@ class App extends Component{
                         </button>
                     </div>
                     {
-                       this.state.isShowing? (<img src="https://images.unsplash.com/photo-1528965051322-6d335c69eb86?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=891&q=80"/>):null}
+                       this.state.isShowing? (<Images/>):null}
 
                 </div>
             </section>
