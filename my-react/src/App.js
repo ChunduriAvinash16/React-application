@@ -9,20 +9,24 @@ class App extends Component{
 
     }
     handleClick=()=>{
-        console.log("inside handle Cliclk");
+       // console.log("inside handle Cliclk");
         this.setState({
             isShowing:!this.state.isShowing
         });
     }
     componentDidMount(){
         console.log("Mount");
-        this.setState({ title:"Hello Avinash"})
+       // this.setState({ title:"Hello Avinash"})
+    }
+
+    componentDidUpdate(){
+        console.log("Updated");
     }
 
 
     render(){
         console.log("App Render");
-        console.log(this.state.title);
+      //  console.log(this.state.title);
         return(
             <section className="flex justify-center">
                 <div className="w-1/2">

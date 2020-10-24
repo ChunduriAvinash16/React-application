@@ -37,3 +37,20 @@ Virtual DOM:
 while using arrow function no need to bind
 But while defining normal function we have to bid that function.
 
+
+componentDidMount():
+    Called immediately after a component is mounted. 
+    Setting state here will trigger re-rendering
+
+componentWillUnmount():
+    Called immediately before a component is destroyed.
+    Perform any necessary cleanup in this method,
+    such as cancelled network requests,
+    or cleaning up any DOM elements created in componentDidMount
+compinentDidupdate():
+    Called immediately after updating occurs. 
+    Not called for the initial render.
+    The snapshot is only present if getSnapshotBeforeUpdate is present 
+    and returns non-null.
+
+2:17:27(Class Base Components)

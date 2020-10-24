@@ -1,8 +1,23 @@
 import React, { Component } from 'react'
 
 export default class Images extends Component {
+    constructor(props){
+        super(props);
+        this.state={interval:null};
+    }
+    componentDidMount(){
+        console.log("Image Mounted");
+        this.setState({
+            interval:setInterval(()=>{
+                console.log("hello");
+            },1000)
+        })
+        
+    }
+
     componentWillUnmount(){
-        console.log("Inside unmount");
+        console.log("Image unmounted");
+        clearInterval(this.state.interval);
     }
     render() {
         return (
