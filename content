@@ -47,10 +47,21 @@ componentWillUnmount():
     Perform any necessary cleanup in this method,
     such as cancelled network requests,
     or cleaning up any DOM elements created in componentDidMount
-compinentDidupdate():
+componentDidupdate():
     Called immediately after updating occurs. 
     Not called for the initial render.
     The snapshot is only present if getSnapshotBeforeUpdate is present 
     and returns non-null.
 
 2:17:27(Class Base Components)
+
+
+useEffect(() => {
+    effect                 //componentDidMount
+    return () => {
+        cleanup           //componentWillUnmount
+    }
+}, [])                   []=>
+
+
+2:34:11

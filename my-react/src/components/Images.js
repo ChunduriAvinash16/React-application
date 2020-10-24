@@ -1,6 +1,30 @@
-import React, { Component } from 'react'
 
-export default class Images extends Component {
+import React, { useEffect, useState } from 'react'
+
+export default function Images() {
+    //const [myinterval, setmyinterval] = useState(null)
+    useEffect(() => {
+        console.log("Image Mount");
+        const interval = setInterval(()=>{
+            console.log("Hello")
+        },1000)
+     return()=>{
+        console.log("image unmount");
+        clearInterval(interval);
+     }
+         
+    }, [])
+
+
+
+    return (
+        <img src="https://images.unsplash.com/photo-1528965051322-6d335c69eb86?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=891&q=80"/>
+
+    )
+}
+
+
+/*export default class Images extends Component {
     constructor(props){
         super(props);
         this.state={interval:null};
@@ -21,7 +45,6 @@ export default class Images extends Component {
     }
     render() {
         return (
-            <img src="https://images.unsplash.com/photo-1528965051322-6d335c69eb86?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=891&q=80"/>
         )
     }
-}
+}*/

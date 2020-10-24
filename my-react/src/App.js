@@ -1,7 +1,7 @@
-import React,{Component} from 'react';
+import React,{Component,useEffect,useState} from 'react';
 import "./assets/css/style.css";
 import Images from "./components/Images";
-class App extends Component{
+/*class App extends Component{
     constructor(props){
         console.log("App constructor");
         super(props); //default props
@@ -45,18 +45,38 @@ class App extends Component{
     }
 }
 
-export default App;
+export default App;*/
 
 
 
-/*function App() {
+function App() {
+    const [title, seTtitle] = useState("Hello react 2");
+    const [isShowing, setIsShowing] = useState(false);
+    useEffect(()=>{
+        console.log("App Mounted");
+    },[])
+
+    function handleClick(){
+        setIsShowing(!isShowing);
+    }
+
+
     return (
-        <div>
-            <div className="bg-gray-500 text-white p-5 border ">
-                <h2 >Hello react</h2>
+        <section className="flex justify-center">
+            {console.log("re-Render")}
+        <div className="w-1/2">
+            <div className="text-center"> 
+            <div className="my-4">{title}</div>
+                <button className="p-2 my-2 bg-blue-700 text-white" onClick={handleClick}>
+                    Toggle Image
+                </button>
             </div>
-        </div>
-    )
-}*/
+            {
+               isShowing? (<Images/>):null}
 
-//export default App;
+        </div>
+    </section>
+    )
+}
+
+export default App;
