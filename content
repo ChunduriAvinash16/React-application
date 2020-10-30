@@ -61,7 +61,40 @@ useEffect(() => {
     return () => {
         cleanup           //componentWillUnmount
     }
-}, [])                   []=>
+}, [])                   []=> if there is an empty array it will work as componentDidMount otherwise component will get updated
 
 
-2:34:11
+
+Example:
+    //Component did mount only
+    useEffect(()=>{
+        console.log("App Mounted");
+    },[])
+
+
+    //componentWillUnmount
+    useEffect(() => {
+        console.log("Image Mount");
+        const interval = setInterval(()=>{
+            console.log("Hello")
+        },1000)
+     return()=>{
+        console.log("image unmount");
+        clearInterval(interval);
+     }
+         
+    }, [])
+
+
+
+    //componentDidupdate
+    useEffect(()=>{
+        ----
+        ----
+    },[value])
+
+
+
+
+
+this is for class based Components

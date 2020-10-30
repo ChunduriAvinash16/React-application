@@ -1,4 +1,4 @@
-import React,{Component,useEffect,useState} from 'react';
+import React,{Component,useEffect,useState,useRef} from 'react';
 import "./assets/css/style.css";
 import Images from "./components/Images";
 /*class App extends Component{
@@ -50,11 +50,26 @@ export default App;*/
 
 
 function App() {
-    const [title, seTtitle] = useState("Hello react 2");
+    const [name, setName] = useState("Hello")
+  //  const [title, seTtitle] = useState("Hello react 2");
     const [isShowing, setIsShowing] = useState(false);
+    const mountref = useRef(false);
+    //Component did mount
     useEffect(()=>{
         console.log("App Mounted");
     },[])
+
+    //Component will update
+    useEffect(()=>{
+        if(mountref.current){
+            console.log("App updated");
+        }else{
+            mountref.current=true;
+        }
+        
+    },[isShowing]);
+
+    
 
     function handleClick(){
         setIsShowing(!isShowing);
@@ -66,7 +81,7 @@ function App() {
             {console.log("re-Render")}
         <div className="w-1/2">
             <div className="text-center"> 
-            <div className="my-4">{title}</div>
+            <div className="my-4">{name}</div>
                 <button className="p-2 my-2 bg-blue-700 text-white" onClick={handleClick}>
                     Toggle Image
                 </button>
