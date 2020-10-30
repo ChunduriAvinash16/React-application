@@ -93,8 +93,25 @@ Example:
         ----
     },[value])
 
-
-
-
+//iterator
+images.map((image)=>{
+    return(
+        ----
+    );
+})
+[...images] spread operator
 
 this is for class based Components
+
+
+
+
+
+
+tailwind.css:
+    flex-wrap:Cover all the space move to next line
+
+
+
+
+3:40:45

@@ -52,43 +52,15 @@ export default App;*/
 function App() {
     const [name, setName] = useState("Hello")
   //  const [title, seTtitle] = useState("Hello react 2");
-    const [isShowing, setIsShowing] = useState(false);
-    const mountref = useRef(false);
-    //Component did mount
-    useEffect(()=>{
-        console.log("App Mounted");
-    },[])
-
-    //Component will update
-    useEffect(()=>{
-        if(mountref.current){
-            console.log("App updated");
-        }else{
-            mountref.current=true;
-        }
-        
-    },[isShowing]);
-
-    
-
-    function handleClick(){
-        setIsShowing(!isShowing);
-    }
-
-
     return (
         <section className="flex justify-center">
             {console.log("re-Render")}
-        <div className="w-1/2">
+        <div className="w-10/12">
             <div className="text-center"> 
             <div className="my-4">{name}</div>
-                <button className="p-2 my-2 bg-blue-700 text-white" onClick={handleClick}>
-                    Toggle Image
-                </button>
             </div>
-            {
-               isShowing? (<Images/>):null}
-
+            
+              <Images/>
         </div>
     </section>
     )
