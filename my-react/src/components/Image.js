@@ -2,7 +2,7 @@ import React, { Component ,useState} from 'react';
 export default function Image({index,handleRemove,image}) {
     const [isHovering, setisHovering] = useState(false);
     return (
-        <div className="w-1/3 my-4 flex justify-center"  key={index}>
+        <div className="p-2 m-1 border flex justify-center"  key={index}>
         <div className="relative"   
             onMouseEnter={()=>setisHovering(true)}
            onMouseLeave={()=>setisHovering(false)}>
@@ -10,7 +10,7 @@ export default function Image({index,handleRemove,image}) {
            onClick={()=>handleRemove(index)}
            >    
         </i>
-         <img src={image} width="150" 
+         <img src={image} width="100%" 
        
          />
         </div>

@@ -1,21 +1,15 @@
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Image from './Image';
-import Axios from 'axios';
 import useScroll from '../utils/Hooks/useScroll';
+import useFetchimage from '../utils/Hooks/useFetchimage';
+import Loading from './Loading';
 export default function Images() {
-    const [images, setimages] = useState([])
-    const scrollPosition=useScroll();
-
+    const [page, setpage] = useState(0)
+    const [images,setimages,errors,isLoading]=useFetchimage(page);
     const [newImage, setnewImage] = useState("");
 
-     useEffect(() => {
-        Axios.get(`${process.env.REACT_APP_UNSPLASH_URL}/?client_id=${process.env.REACT_APP_UNSPLASH_KEY}`)
-        .then((res)=>{
-            console.log(res.data);
-            setimages(res.data);
-        })
-     }, [])
+
 
     function handleRemove(index) {
         //console.log(images.filter((image,i)=>i!=index));
@@ -31,40 +25,30 @@ export default function Images() {
         return (
             images.map((img,index)=><Image  image={img.urls.regular} index={index} handleRemove={handleRemove}/>)
         ) }
-        function handleAdd(){
-        if(newImage){
-            setimages([newImage,...images]);
-            setnewImage("");
-        }
-
-
-        //console.log("Working");
-    }
-
     function handleChange(event){
         setnewImage(event.target.value);
         //console.log(event.target.value);
     }
-
-    return (
+    if(isLoading) return <Loading/>
+    return( 
         <section>
-            {scrollPosition}
-            <div className="flex flex-wrap justify-center">
+            {
+                errors.length>0 &&(
+                    <div className="flex h-screen">
+                    <p className="m-auto">
+                        {errors[0]}
+                    </p>
+                </div>
+                )
+            }
+            <div className="gap-0 " style={{columnCount:5}}>
                 <Showimage/>
             </div>
-            <div className="flex justify-between my-5">
-                <input type="text"
-                value={newImage}
-                className="p-2 border border-gray-800 shadow rounded w-full" onChange={handleChange}/>
-                <button 
-                    disabled={newImage==""} 
-                    className={`p-2  text-white ml-2 ${newImage==""?"bg-blue-400":"bg-blue-900"}`} 
-                    onClick={handleAdd}>
-                    Add 
-                </button>   
-            </div> 
+            {
+                errors.length>0?null:(
+                    <button onClick={()=>setpage(page+1)}>Load More</button>
+            )}
         </section>
-        
     )
 }
 
