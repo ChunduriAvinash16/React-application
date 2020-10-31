@@ -1,28 +1,28 @@
 import Axios from 'axios';
 import React, { useState,useEffect } from 'react';
 
-const url=process.env.REACT_APP_UNSPLASH_URL
+const api=process.env.REACT_APP_UNSPLASH_API
 const secret=process.env.REACT_APP_UNSPLASH_KEY
 
-export default function useFetchimage(page) {
+export default function useFetchimage(page,searchTerm) {
     const [Images, setImages] = useState([]);
     const [errors, setErrors] = useState([]);
     const [isLoding, setisLoding] = useState(false)
 
     useEffect(() => {
+        const url=searchTerm===null?"photos" : "search/photos";
         setisLoding(true);
-        Axios.get(`${url}/?client_id=${secret}&page=${page}`)
+        Axios.get(`${api}/${url}?client_id=${secret}&page=${page}&query=${searchTerm}`)
         .then((res)=>{
-        //console.log(res.data);
-            setImages([...Images,...res.data]);
-            setisLoding(false)
+        (searchTerm)?(page>1)?setImages([...Images,...res.data.results]):setImages([...res.data.results]):setImages([...Images,...res.data]);
+        setisLoding(false)
         })
         .catch((e)=>{
-            setErrors(e.response.data.errors)
+            setErrors("Unable to load")
             setisLoding(false);   
         });
     
-    },[page])
+    },[page,searchTerm])
     
 
     return [Images,setImages,errors,isLoding];

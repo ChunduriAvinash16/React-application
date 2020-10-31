@@ -115,4 +115,5 @@ Dynamic class:
 
 
 
-3:40:45
+DebounceEffect:
+    triggering content after sometime is called DebounceEffect

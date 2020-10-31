@@ -5,11 +5,12 @@ import useScroll from '../utils/Hooks/useScroll';
 import useFetchimage from '../utils/Hooks/useFetchimage';
 import Loading from './Loading';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import useDebounce from '../utils/Hooks/useDebounce';
 export default function Images() {
     const [page, setpage] = useState(0)
-    const [images,setimages,errors,isLoading]=useFetchimage(page);
+    const [searchTerm, setsearchTerm] = useState(null)
+    const [images,setimages,errors,isLoading]=useFetchimage(page,searchTerm);
     const [newImage, setnewImage] = useState("");
-
 
 
     function handleRemove(index) {
@@ -24,7 +25,7 @@ export default function Images() {
 
     function Showimage(){
         return (
-            <InfiniteScroll className="flex flex-wrap" loader={<Loading/>}dataLength={images.length} next={()=>setpage(page+1)} hasMore={true} >       
+            <InfiniteScroll className="flex flex-wrap" loader={<Loading/>} dataLength={images.length} next={()=>setpage(page+1)} hasMore={true} >       
                {images.map((img,index)=><Image  image={img.urls.regular} index={index} handleRemove={handleRemove}/>)}
             </InfiniteScroll>
         ) }
@@ -32,11 +33,19 @@ export default function Images() {
         setnewImage(event.target.value);
         //console.log(event.target.value);
     }
-    if(isLoading) return <Loading/>
+    const debounce=useDebounce();
+    function handleInput(e) {
+        const text=e.target.value;
+       debounce(()=>setsearchTerm(text))
+    }
+
     return( 
         <section>
+            <div className="my-5">
+                <input type="text" placeholder="Search Photos Here" className="border rounded shadow p-2 w-full" onChange={handleInput} />
+            </div>
             {
-                errors.length>0 &&(
+                errors.length > 0 &&(
                     <div className="flex h-screen">
                     <p className="m-auto">
                         {errors[0]}
@@ -47,6 +56,7 @@ export default function Images() {
             <div className="gap-0" >
                 <Showimage/>
             </div>
+            {isLoading && <Loading/>}
         </section>
     )
 }
