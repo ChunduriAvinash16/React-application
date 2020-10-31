@@ -1,16 +1,22 @@
 
 import React, { useEffect, useState } from 'react'
-
+import Image from './Image';
+import Axios from 'axios';
+import useScroll from '../utils/Hooks/useScroll';
 export default function Images() {
-    const [images, setimages] = useState([
-        "https://images.unsplash.com/photo-1604011854873-76e939ef5a5e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
-        "https://images.unsplash.com/photo-1528965051322-6d335c69eb86?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=891&q=80",
-        "https://images.unsplash.com/photo-1604006630833-48b447bd57e2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
-        "https://images.unsplash.com/photo-1604005013757-95abc04c0d43?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1925&q=80",
+    const [images, setimages] = useState([])
+    const scrollPosition=useScroll();
 
-    ])
-    
     const [newImage, setnewImage] = useState("");
+
+     useEffect(() => {
+        Axios.get(`${process.env.REACT_APP_UNSPLASH_URL}/?client_id=${process.env.REACT_APP_UNSPLASH_KEY}`)
+        .then((res)=>{
+            console.log(res.data);
+            setimages(res.data);
+        })
+     }, [])
+
     function handleRemove(index) {
         //console.log(images.filter((image,i)=>i!=index));
        // setimages(images.filter((image,i)=>i!=index))
@@ -21,19 +27,11 @@ export default function Images() {
         ])
     }
 
-
     function Showimage(){
-        return(
-            images.map((image,index)=>{
-                return(
-                    <div className="w-1/3 my-4 flex justify-center"  key={index}>
-                        <img src={image} width="150" onClick={()=>handleRemove(index)}/>
-                    </div>
-                );
-            })
-        )
-    }
-    function handleAdd(){
+        return (
+            images.map((img,index)=><Image  image={img.urls.regular} index={index} handleRemove={handleRemove}/>)
+        ) }
+        function handleAdd(){
         if(newImage){
             setimages([newImage,...images]);
             setnewImage("");
@@ -50,6 +48,7 @@ export default function Images() {
 
     return (
         <section>
+            {scrollPosition}
             <div className="flex flex-wrap justify-center">
                 <Showimage/>
             </div>
@@ -61,7 +60,7 @@ export default function Images() {
                     disabled={newImage==""} 
                     className={`p-2  text-white ml-2 ${newImage==""?"bg-blue-400":"bg-blue-900"}`} 
                     onClick={handleAdd}>
-                    Add
+                    Add 
                 </button>   
             </div> 
         </section>

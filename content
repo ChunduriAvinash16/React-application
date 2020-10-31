@@ -103,13 +103,14 @@ images.map((image)=>{
 
 this is for class based Components
 
-
-
-
+Custom HOOK
 
 
 tailwind.css:
     flex-wrap:Cover all the space move to next line
+
+Dynamic class:
+    className={`p-2  text-white ml-2 ${newImage==""?"bg-blue-400":"bg-blue-900"}`} 
 
 
 
