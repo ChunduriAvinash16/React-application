@@ -2,7 +2,7 @@ import React, { Component ,useState} from 'react';
 export default function Image({index,handleRemove,image}) {
     const [isHovering, setisHovering] = useState(false);
     return (
-        <div className="p-2 m-1 border flex justify-center"  key={index}>
+        <div className="w-1/3 p-2  border flex justify-center"  key={index}>
         <div className="relative"   
             onMouseEnter={()=>setisHovering(true)}
            onMouseLeave={()=>setisHovering(false)}>

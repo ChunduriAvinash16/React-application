@@ -1,9 +1,10 @@
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from './Image';
 import useScroll from '../utils/Hooks/useScroll';
 import useFetchimage from '../utils/Hooks/useFetchimage';
 import Loading from './Loading';
+import InfiniteScroll from 'react-infinite-scroll-component';
 export default function Images() {
     const [page, setpage] = useState(0)
     const [images,setimages,errors,isLoading]=useFetchimage(page);
@@ -23,7 +24,9 @@ export default function Images() {
 
     function Showimage(){
         return (
-            images.map((img,index)=><Image  image={img.urls.regular} index={index} handleRemove={handleRemove}/>)
+            <InfiniteScroll className="flex flex-wrap" loader={<Loading/>}dataLength={images.length} next={()=>setpage(page+1)} hasMore={true} >       
+               {images.map((img,index)=><Image  image={img.urls.regular} index={index} handleRemove={handleRemove}/>)}
+            </InfiniteScroll>
         ) }
     function handleChange(event){
         setnewImage(event.target.value);
@@ -41,13 +44,9 @@ export default function Images() {
                 </div>
                 )
             }
-            <div className="gap-0 " style={{columnCount:5}}>
+            <div className="gap-0" >
                 <Showimage/>
             </div>
-            {
-                errors.length>0?null:(
-                    <button onClick={()=>setpage(page+1)}>Load More</button>
-            )}
         </section>
     )
 }
