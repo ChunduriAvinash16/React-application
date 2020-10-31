@@ -1,7 +1,6 @@
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Image from './Image';
-import useScroll from '../utils/Hooks/useScroll';
 import useFetchimage from '../utils/Hooks/useFetchimage';
 import Loading from './Loading';
 import InfiniteScroll from 'react-infinite-scroll-component';

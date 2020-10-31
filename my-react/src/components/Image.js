@@ -1,4 +1,4 @@
-import React, { Component ,useState} from 'react';
+import React, { useState} from 'react';
 export default function Image({index,handleRemove,image}) {
     const [isHovering, setisHovering] = useState(false);
     return (

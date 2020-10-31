@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import React, { useState,useEffect } from 'react';
+import { useState,useEffect } from 'react';
 
 const api=process.env.REACT_APP_UNSPLASH_API
 const secret=process.env.REACT_APP_UNSPLASH_KEY
