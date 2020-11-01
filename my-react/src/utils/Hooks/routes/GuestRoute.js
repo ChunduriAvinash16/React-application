@@ -3,14 +3,11 @@ import { Redirect, Route } from 'react-router-dom';
 import Loading from '../../../components/Loading';
 import AppContext from '../../../store/AppContext'
 
-export default function AuthRoute(props) {
+export default function GuestRoute(props) {
     const [isLoggedIn,user]=useContext(AppContext);
-    
+   
 
-    if(isLoggedIn) {
-        console.log(isLoggedIn);
-        return <Route {...props}/>;
-    }
-        return <Redirect to="/login" />;
+    if(!isLoggedIn) return <Route {...props}/>;
+        return <Redirect to="/" />;
 
 }

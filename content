@@ -123,4 +123,17 @@ parent--->Child--->GrandChild----->GreatGrandChild
 
 
 redirecting to login page is not good after login to that page
-So we will use Protected Routes
+So we will use Protected 
+
+
+
+formik:
+    intialValues:to intialize the values
+    OnSubmit:value=>{"on Submitting"}
+    validate:value=>{"Validation "}
+    onBlur={formik.handleBlur}
+
+    if we are not using touched for every key stroke form is validating
+    formik.touched.email && formik.errors.email ? <p>{formik.errors.email}</p>:null    
+        when there is touched in emai and if there are any errors then it will 
+        show errors otherwise null
