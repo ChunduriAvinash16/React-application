@@ -137,3 +137,18 @@ formik:
     formik.touched.email && formik.errors.email ? <p>{formik.errors.email}</p>:null    
         when there is touched in emai and if there are any errors then it will 
         show errors otherwise null
+
+    getFieldProps:
+        It contains  
+                value:value
+                name:string
+                onChange
+                onBlur
+        Example:
+            name: "email"
+            onBlur: ƒ ()
+            onChange: ƒ ()
+            value: ""
+
+Yup Library:
+    it is used for validation reules for forms 

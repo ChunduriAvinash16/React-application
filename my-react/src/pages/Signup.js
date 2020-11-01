@@ -1,27 +1,18 @@
 import React, { useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import firebase from '../config/firebase';
-import {useFormik} from "formik";
+import * as Yup from 'yup';
+import {useFormik, yupToFormErrors} from "formik";
 export default function Signup() {
     const formik= useFormik({
         initialValues:{email:"",password:""},
         onSubmit:value=>{
             console.log("Formik",value);
         },
-        validate:values=>{
-            const errors={};
-            if(!values.email){
-                errors.email="Email Field Requried.";
-            }else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)){
-                errors.email="Invalid Email Address"; 
-            }
-            if(!values.password){
-                errors.password="Password Field is Requried.";
-            }else if(values.password.length <= 6 ){
-                errors.password="password must be longer than 6";
-            }
-            return errors
-        }
+        validationSchema:Yup.object({
+            email:Yup.string().required("Email is requried").email(),
+            password:Yup.string().required('Password Requried').min(6)
+        }),
     })
 
 
@@ -31,19 +22,20 @@ export default function Signup() {
                 <h1 className="w-full text-4xl tracking-widest text-center my-6">Signup Here</h1>
                 <form className="m-5 w-5/6" onSubmit={formik.handleSubmit}>
                     <div className="w-full my-6">
-                        <input type="email" name="email" className="p-2 rounded text-black shadow w-full" placeholder="Email or UserName" value={formik.values.email} 
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        />{
+                        <input type="email"  className="p-2 rounded text-black shadow w-full" placeholder="Email or UserName" 
+                        {...formik.getFieldProps('email')}
+                        />
+                        {
+                            
                             formik.touched.email && formik.errors.email ? 
                             <p>{formik.errors.email}</p>:null    
                         }
                        
                     </div>
                     <div className="w-full my-6">
-                        <input type="password" name="password" className="p-2 rounded shadow w-full text-black" placeholder="Password" value={formik.values.password} 
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
+                        <input type="password" className="p-2 rounded shadow w-full text-black" placeholder="Password"  
+                           {...formik.getFieldProps('password')}   
+
                         />
                         {
                             formik.touched.password && formik.errors.password ? 
