@@ -18,7 +18,7 @@ export default function useFetchimage(page,searchTerm) {
         setisLoding(false)
         })
         .catch((e)=>{
-            setErrors("Unable to load")
+            setErrors(e)
             setisLoding(false);   
         });
     

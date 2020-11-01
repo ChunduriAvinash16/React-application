@@ -54,8 +54,8 @@ export default function Images() {
             }
             <div className="gap-0" >
                 <Showimage/>
+                {isLoading && <Loading/>}
             </div>
-            {isLoading && <Loading/>}
         </section>
     )
 }

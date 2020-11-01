@@ -112,8 +112,15 @@ tailwind.css:
 Dynamic class:
     className={`p-2  text-white ml-2 ${newImage==""?"bg-blue-400":"bg-blue-900"}`} 
 
-
-
-
 DebounceEffect:
     triggering content after sometime is called DebounceEffect
+
+React.CreateContext(): 
+
+   .------------------------------------.
+  /                                      \   
+parent--->Child--->GrandChild----->GreatGrandChild
+
+
+redirecting to login page is not good after login to that page
+So we will use Protected Routes
