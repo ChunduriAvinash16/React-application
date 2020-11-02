@@ -5,6 +5,7 @@ import useFetchimage from '../utils/Hooks/useFetchimage';
 import Loading from './Loading';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import useDebounce from '../utils/Hooks/useDebounce';
+import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion';
 export default function Images() {
     const [page, setpage] = useState(0)
     const [searchTerm, setsearchTerm] = useState(null)
@@ -23,10 +24,50 @@ export default function Images() {
     }
 
     function Showimage(){
+        const [showPreview, setshowPreview] = useState(false);
+
         return (
-            <InfiniteScroll className="flex flex-wrap" loader={<Loading/>} dataLength={images.length} next={()=>setpage(page+1)} hasMore={true} >       
-               {images.map((img,index)=><Image  image={img.urls.regular} index={index} handleRemove={handleRemove}/>)}
-            </InfiniteScroll>
+            <AnimateSharedLayout>
+               <InfiniteScroll className="flex flex-wrap"  dataLength={images.length} next={()=>setpage(page+1)} hasMore={true} >       
+               {images.map((img,index)=>(
+               <motion.div 
+                    layoutId={img.urls.regular}
+                    key={index} 
+                    initial={{opacity:0}}
+                    animate={{opacity:1}}
+                    className="w-1/5 p-2  border flex justify-center"
+                >
+                
+                <Image  
+                 show={()=>setshowPreview(img.urls.regular)}
+                 image={img.urls.regular}
+                 handleRemove={handleRemove}
+                 index={index}
+                />
+               </motion.div>
+                ))}
+               </InfiniteScroll>
+               <AnimatePresence>
+        {
+            showPreview&&
+            <motion.section  
+                layoutId={showPreview} 
+                exit={{opacity:0 , rotate:360 ,transition:{duration:1}}} 
+                className="fixed w-full h-full flex justify-center top-0 left-0 z-40 items-center" 
+                onClick={()=>setshowPreview(false)}>
+            <div className="bg-white">
+            <img 
+                src={showPreview}  
+                width="300" 
+                height="auto"
+                className="rounded-lg"
+                />
+            </div>
+            </motion.section>
+            }
+            </AnimatePresence>
+            </AnimateSharedLayout>
+
         ) }
     function handleChange(event){
         setnewImage(event.target.value);

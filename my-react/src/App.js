@@ -9,6 +9,7 @@ import AuthRoute from './utils/Hooks/routes/AuthRoute';
 import GuestRoute from './utils/Hooks/routes/GuestRoute';
 import Loading from './components/Loading';
 import NotFound from './pages/404';
+import { motion } from 'framer-motion';
 
 function App() {
     const [isLoggedIn, setisLoggedIn] = useState(false);
@@ -47,26 +48,28 @@ function App() {
                                     key={index}
                                     path={r.path}
                                     exact={r.exact}
-                                    component={r.component}
-                                />)
+                                    //component={r.component}
+                                ><r.component/></GuestRoute>)
                             }
                         if(r.protected==="auth"){
                             return(
                             <AuthRoute 
                             key={index}
                             path={r.path}
-                            exact={r.exact}
-                            component={r.component}
-
-                            />)
+                            exact={r.exact}><r.component/></AuthRoute>)
                         }
                             return(
                            <Route
                             key={index}
                             path={r.path}
                             exact={r.exact}
-                            component={r.component}
-                            />
+                            ><motion.div
+                             initial={{x:200}}
+                             animate={{x:0}}
+                             >
+                                     <r.component/>
+                            </motion.div>
+                               </Route>
                         ); 
                       })}
                       <Route path="*"><NotFound/></Route>

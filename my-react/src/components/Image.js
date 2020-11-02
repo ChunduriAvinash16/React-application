@@ -1,8 +1,10 @@
+import { AnimatePresence, motion } from 'framer-motion';
 import React, { useState} from 'react';
-export default function Image({index,handleRemove,image}) {
+export default function Image({show,index,handleRemove,image}) {
     const [isHovering, setisHovering] = useState(false);
+    const [showPreview, setshowPreview] = useState(false);
+
     return (
-        <div className="w-1/3 p-2  border flex justify-center"  key={index}>
         <div className="relative"   
             onMouseEnter={()=>setisHovering(true)}
            onMouseLeave={()=>setisHovering(false)}>
@@ -10,10 +12,12 @@ export default function Image({index,handleRemove,image}) {
            onClick={()=>handleRemove(index)}
            >    
         </i>
-         <img src={image} width="100%" 
-       
-         />
+         <img 
+            src={image}  
+            width="100%"
+            height="auto" 
+            onClick={show}
+        />
         </div>
-    </div>       
-    )
+    );
 }
