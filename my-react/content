@@ -1,0 +1,154 @@
+Javascript:
+    1->getElementbyID("Id");
+    2->createElement("h1");
+    3->innerText("providin inner text");
+    4->appendChild():Child should be node 
+ReactDom & React:
+    React.createElement(type,props,value)
+    React->just for javascript
+    ReactDom->To manipulate DOM we need reactDom
+        ReactDom,render(1,2) need 2 things  
+            1->new element
+            2->target element
+    props : properties
+            1->Movement of data from one functional component to 
+                another function component can be easily done by props.
+        
+
+JSX:
+    HTML inside javascript
+    JSX is advance feature of javascript
+    babel:
+        we can use html elements inside javascript
+        it is used to convert html elements provided in script to React elements
+    functional Components:
+        funnction Hello(){return()}
+        ()=>{} //Arrow frunction
+        let Hello = function(){return()}
+
+
+Virtual DOM:
+    It will create by react
+    whenever changes in react it actually happens in virtual-dom . 
+    if virtual-dom not same as Real-dom    
+        then the changes made to the Real-DOM in one GO
+    Updating Virtual-DOM is super fast . So,this is the reson react uses virtual-DOM.
+
+while using arrow function no need to bind
+But while defining normal function we have to bid that function.
+
+
+componentDidMount():
+    Called immediately after a component is mounted. 
+    Setting state here will trigger re-rendering
+
+componentWillUnmount():
+    Called immediately before a component is destroyed.
+    Perform any necessary cleanup in this method,
+    such as cancelled network requests,
+    or cleaning up any DOM elements created in componentDidMount
+componentDidupdate():
+    Called immediately after updating occurs. 
+    Not called for the initial render.
+    The snapshot is only present if getSnapshotBeforeUpdate is present 
+    and returns non-null.
+
+2:17:27(Class Base Components)
+
+
+useEffect(() => {
+    effect                 //componentDidMount
+    return () => {
+        cleanup           //componentWillUnmount
+    }
+}, [])                   []=> if there is an empty array it will work as componentDidMount otherwise component will get updated
+
+
+
+Example:
+    //Component did mount only
+    useEffect(()=>{
+        console.log("App Mounted");
+    },[])
+
+
+    //componentWillUnmount
+    useEffect(() => {
+        console.log("Image Mount");
+        const interval = setInterval(()=>{
+            console.log("Hello")
+        },1000)
+     return()=>{
+        console.log("image unmount");
+        clearInterval(interval);
+     }
+         
+    }, [])
+
+
+
+    //componentDidupdate
+    useEffect(()=>{
+        ----
+        ----
+    },[value])
+
+//iterator
+images.map((image)=>{
+    return(
+        ----
+    );
+})
+[...images] spread operator
+
+this is for class based Components
+
+Custom HOOK
+
+
+tailwind.css:
+    flex-wrap:Cover all the space move to next line
+
+Dynamic class:
+    className={`p-2  text-white ml-2 ${newImage==""?"bg-blue-400":"bg-blue-900"}`} 
+
+DebounceEffect:
+    triggering content after sometime is called DebounceEffect
+
+React.CreateContext(): 
+
+   .------------------------------------.
+  /                                      \   
+parent--->Child--->GrandChild----->GreatGrandChild
+
+
+redirecting to login page is not good after login to that page
+So we will use Protected 
+
+
+
+formik:
+    intialValues:to intialize the values
+    OnSubmit:value=>{"on Submitting"}
+    validate:value=>{"Validation "}
+    onBlur={formik.handleBlur}
+
+    if we are not using touched for every key stroke form is validating
+    formik.touched.email && formik.errors.email ? <p>{formik.errors.email}</p>:null    
+        when there is touched in emai and if there are any errors then it will 
+        show errors otherwise null
+
+    getFieldProps:
+        It contains  
+                value:value
+                name:string
+                onChange
+                onBlur
+        Example:
+            name: "email"
+            onBlur: ƒ ()
+            onChange: ƒ ()
+            value: ""
+
+Yup Library:
+    it is used for validation reules for forms 
